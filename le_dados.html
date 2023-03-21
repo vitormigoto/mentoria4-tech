@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Compra</title>
+    <style>
+
+        body{            
+            background-color:#CCCCCC;
+            display:flex;
+            justify-content: center;
+            font-family:"Arial";
+        }
+
+        main{
+            border:1px solid black;
+            border-radius:5px;
+            padding:20px;
+            width:600px;
+            display:flex;
+            flex-direction:column;
+            background-color: rgb(246, 255, 218);
+        }
+
+        section{
+            display:flex;
+            justify-content:space-around;         
+            margin-bottom:12px;   
+        }
+
+        .card{
+            border:0px solid rgb(118, 118, 118);
+            background-color: white;                        
+            border-radius: 5px;
+            width:100px;            
+            text-align: center;
+            padding:5px;
+            box-shadow:1px 1px 5px rgb(128, 128, 128);
+            cursor:pointer;            
+        }
+
+        .card:hover{
+            opacity:0.6;
+        }
+
+        img{
+            width:75px;
+        }
+
+        .menor18{
+            visibility:hidden;
+            display:none;
+        }
+        
+    </style>
+    <script>
+
+        function ler_dados(){ 
+            let url = document.location.search
+            const parametros = new URLSearchParams(url);            
+            let nome = parametros.get("nome")
+            let tel = parametros.get("tel")
+            let end = parametros.get("endereco")
+            let dt_nasc = parametros.get("data_nasc")
+            let msg = parametros.get("mensagem")
+
+            const data = dt_nasc.split("/")
+            let dia = data[0]
+            let mes = data[1]
+            let ano = data[2]
+
+            const dataAtual = new Date()
+            
+            const anoAtual = dataAtual.getFullYear()
+            let idade = anoAtual - ano
+            
+            if(idade < 18){
+                document.getElementById("item1").className = "menor18"
+                document.getElementById("item2").className = "menor18"
+            }
+            
+            
+        }
+
+    </script>
+</head>
+<body onload="ler_dados()">
+
+    <main>
+        <h2 align="center">Escolha seus Items</h2>
+
+        <section>
+            <div class="card">
+                <img src="images/imagem.png">
+                <h4>Refrigerante</h4>
+                <h4>R$ 10,00</h4>
+                <input type="checkbox">
+            </div>
+
+            <div class="card" id="item1">
+                <img src="https://i0.wp.com/www.lojasoviet.com.br/wp-content/uploads/2021/05/12570406551_ROSA-LUXEMBURGO-lata-473ml-1.png?fit=1080%2C1080&ssl=1">
+                <h4>Cerveja</h4>
+                <h4>R$ 10,00</h4>
+                <input type="checkbox">
+            </div>
+
+            <div class="card">
+                <img src="https://trimais.vteximg.com.br/arquivos/ids/1014873-1000-1000/foto_original.jpg?v=637395895512400000">
+                <h4>Pão de mel</h4>
+                <h4>R$ 10,00</h4>
+                <input type="checkbox">
+            </div>
+
+            <div class="card">
+                <img src="https://www.stuttgart.com.br/media/catalog/product/cache/55a240f7191edc46f444b981637989c2/s/c/schogetten_alpine_milk_chocolate_100g_1_1.png">
+                <h4>Chocolate</h4>
+                <h4>R$ 10,00</h4>
+                <input type="checkbox">
+            </div>
+
+            <div class="card" id="item2">
+                <img src="https://www.emporiofreicaneca.com.br/wp-content/uploads/2022/01/Cachaca-Seleta-1L.png">
+                <h4>Cachaça</h4>
+                <h4>R$ 10,00</h4>
+                <input type="checkbox">
+            </div>
+        </section>
+
+        <section>
+            <a href="index.html">Voltar</a>  <button> Finalizar Compra</button>
+        </section>
+        
+        
+    </main>
+    
+</body>
+</html>
