@@ -16,9 +16,8 @@
 
         main{
             border:1px solid black;
-            border-radius:5px;
-            padding:20px;
-            width:600px;
+            border-radius:5px;            
+            padding:20px;            
             display:flex;
             flex-direction:column;
             background-color: rgb(246, 255, 218);
@@ -38,7 +37,8 @@
             text-align: center;
             padding:5px;
             box-shadow:1px 1px 5px rgb(128, 128, 128);
-            cursor:pointer;            
+            cursor:pointer;         
+            margin:5px;   
         }
 
         .card:hover{
@@ -53,9 +53,48 @@
             visibility:hidden;
             display:none;
         }
+
+        #principal{ 
+            display:flex;
+        }
+
+        #resumo{
+            margin:0px 10px;
+            width:250px;
+            border:1px solid #ccc;
+            border-radius: 5px;
+            display:flex;
+            flex-direction:column;
+            padding:0px 10px;
+            box-shadow:1px 1px 5px rgb(128, 128, 128);
+            background-color: white;
+        }
+
+        #resumo h3{
+            margin:0px;
+            padding:0px
+        }
+
+        #resumo ul{ 
+            list-style: none;
+            margin:0px;
+            padding:0px;
+        }
         
     </style>
     <script>
+
+        function adiciona_produto(nome,valor,status){
+            
+            let total = document.getElementById("total_compra").innerHTML;
+
+            if(status){
+                document.getElementById("total_compra").innerHTML = Number(total) + Number(valor);
+            }else{
+                document.getElementById("total_compra").innerHTML = Number(total) - Number(valor);
+            }
+
+        }
 
         function ler_dados(){ 
             let url = document.location.search
@@ -71,8 +110,7 @@
             let mes = data[1]
             let ano = data[2]
 
-            const dataAtual = new Date()
-            
+            const dataAtual = new Date()            
             const anoAtual = dataAtual.getFullYear()
             let idade = anoAtual - ano
             
@@ -91,45 +129,56 @@
     <main>
         <h2 align="center">Escolha seus Items</h2>
 
+        <div id="principal">
+            <section>
+                <div class="card">
+                    <img src="images/imagem.png">
+                    <h4>Refrigerante</h4>
+                    <h4>R$ 10,00</h4>
+                    <input type="checkbox" onclick="adiciona_produto('Refrigerante',10,this.checked)">
+                </div>
+
+                <div class="card" id="item1">
+                    <img src="https://i0.wp.com/www.lojasoviet.com.br/wp-content/uploads/2021/05/12570406551_ROSA-LUXEMBURGO-lata-473ml-1.png?fit=1080%2C1080&ssl=1">
+                    <h4>Cerveja</h4>
+                    <h4>R$ 5,00</h4>
+                    <input type="checkbox" onclick="adiciona_produto('Cerveja',5,this.checked)">
+                </div>
+
+                <div class="card">
+                    <img src="https://trimais.vteximg.com.br/arquivos/ids/1014873-1000-1000/foto_original.jpg?v=637395895512400000">
+                    <h4>Pão de mel</h4>
+                    <h4>R$ 12,00</h4>
+                    <input type="checkbox" onclick="adiciona_produto('Pão de Mel',12,this.checked)">
+                </div>
+
+                <div class="card">
+                    <img src="https://www.stuttgart.com.br/media/catalog/product/cache/55a240f7191edc46f444b981637989c2/s/c/schogetten_alpine_milk_chocolate_100g_1_1.png">
+                    <h4>Chocolate</h4>
+                    <h4>R$ 13,00</h4>
+                    <input type="checkbox" onclick="adiciona_produto('Chocolate',13,this.checked)">
+                </div>
+
+                <div class="card" id="item2">
+                    <img src="https://www.emporiofreicaneca.com.br/wp-content/uploads/2022/01/Cachaca-Seleta-1L.png">
+                    <h4>Cachaça</h4>
+                    <h4>R$ 2,00</h4>
+                    <input type="checkbox" onclick="adiciona_produto('Cachaça',2,this.checked)">
+                </div>
+            </section>
+
+            <section id="resumo">
+                <h3>Resumo</h3>
+                <ul id="lista_produtos">
+                    <li>Refrigerante <span>R$ 10,00</span></li>
+                </ul>
+                <p><b>Total:</b> R$ <span id="total_compra">0</span></p>
+                <button> Finalizar Compra</button>
+            </section>
+        </div>
+
         <section>
-            <div class="card">
-                <img src="images/imagem.png">
-                <h4>Refrigerante</h4>
-                <h4>R$ 10,00</h4>
-                <input type="checkbox">
-            </div>
-
-            <div class="card" id="item1">
-                <img src="https://i0.wp.com/www.lojasoviet.com.br/wp-content/uploads/2021/05/12570406551_ROSA-LUXEMBURGO-lata-473ml-1.png?fit=1080%2C1080&ssl=1">
-                <h4>Cerveja</h4>
-                <h4>R$ 10,00</h4>
-                <input type="checkbox">
-            </div>
-
-            <div class="card">
-                <img src="https://trimais.vteximg.com.br/arquivos/ids/1014873-1000-1000/foto_original.jpg?v=637395895512400000">
-                <h4>Pão de mel</h4>
-                <h4>R$ 10,00</h4>
-                <input type="checkbox">
-            </div>
-
-            <div class="card">
-                <img src="https://www.stuttgart.com.br/media/catalog/product/cache/55a240f7191edc46f444b981637989c2/s/c/schogetten_alpine_milk_chocolate_100g_1_1.png">
-                <h4>Chocolate</h4>
-                <h4>R$ 10,00</h4>
-                <input type="checkbox">
-            </div>
-
-            <div class="card" id="item2">
-                <img src="https://www.emporiofreicaneca.com.br/wp-content/uploads/2022/01/Cachaca-Seleta-1L.png">
-                <h4>Cachaça</h4>
-                <h4>R$ 10,00</h4>
-                <input type="checkbox">
-            </div>
-        </section>
-
-        <section>
-            <a href="index.html">Voltar</a>  <button> Finalizar Compra</button>
+            <a href="index.html">Voltar</a>  
         </section>
         
         
